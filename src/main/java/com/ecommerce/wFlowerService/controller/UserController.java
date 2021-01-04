@@ -33,13 +33,12 @@ public class UserController {
     @Autowired
     IUserService iUserService;
 
-    @PostMapping("/user")
+    @PostMapping("/register")
     private ResponseEntity<BaseResponse> createUser(@RequestBody User user) {
         if (user != null) {
-            iUserService.createUser(user);
-            return new ResponseEntity<>(new BaseResponse(), HttpStatus.OK);
+            return new ResponseEntity(iUserService.createUser(user), HttpStatus.OK);
         }
-        return new ResponseEntity<>(new BaseResponse(ERRORCODE.FAIL), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity(new BaseResponse(ERRORCODE.FAIL), HttpStatus.BAD_REQUEST);
     }
 
     @PostMapping("/login")

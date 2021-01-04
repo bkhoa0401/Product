@@ -2,19 +2,21 @@ package com.ecommerce.wFlowerService.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name="ROLE")
+@Setter
 @Getter
 public class Role {
 
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @JsonIgnore
+   // @JsonIgnore
     private long id;
 
     @Column(name = "NAME", columnDefinition = "NVARCHAR(20)")

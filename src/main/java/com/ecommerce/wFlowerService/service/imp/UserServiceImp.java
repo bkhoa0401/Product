@@ -1,9 +1,11 @@
 package com.ecommerce.wFlowerService.service.imp;
 
+import com.ecommerce.wFlowerService.entity.Role;
 import com.ecommerce.wFlowerService.entity.User;
 import com.ecommerce.wFlowerService.entity.request.ChangePasswordRequest;
 import com.ecommerce.wFlowerService.entity.request.ResetPasswordRequest;
 import com.ecommerce.wFlowerService.entity.response.BaseResponse;
+import com.ecommerce.wFlowerService.repository.IRoleRepository;
 import com.ecommerce.wFlowerService.repository.IUserRepository;
 import com.ecommerce.wFlowerService.security.JwtTokenProvider;
 import com.ecommerce.wFlowerService.security.bean.CustomUserDetails;
@@ -27,15 +29,30 @@ public class UserServiceImp implements IUserService, UserDetailsService {
     @Autowired
     JwtTokenProvider tokenProvider;
 
+    @Autowired
+    IRoleRepository roleRepository;
+
     @Bean
     private BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
     @Override
-    public void createUser(User user) {
-        user.setPassword(passwordEncoder().encode(Utils.generateKey(7)));
+    public BaseResponse createUser(User user) {
+        //user.setPassword(passwordEncoder().encode(Utils.generateKey(7)));
+
+        User userIsExist = userRepository.findUserByUsername(user.getUsername());
+        if (userIsExist != null) {
+            return new BaseRespone(ERRORCODE.USERNAMEISEXIST);
+        }
+
+        user.setPassword(passwordEncoder().encode("12wqasxz"));
+        user.setEnable("T");
+
+        Role userRole = roleRepository.findRoleByName("ROLE_USER");
+        user.setRoleID(userRole);
         userRepository.save(user);
+        return new BaseResponse();
     }
 
     @Override

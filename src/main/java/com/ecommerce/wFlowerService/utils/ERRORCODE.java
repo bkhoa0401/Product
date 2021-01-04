@@ -10,7 +10,8 @@ public enum ERRORCODE {
     NORECORD("F002", "No record"),
     USERNOTFOUND("F003","User not found"),
     PASSWORDNOTMATHCED("F004","Password not matched"),
-    USERNAMEORPASSWORDNOTCORRECT("F005", "UserName or Password not correct");
+    USERNAMEORPASSWORDNOTCORRECT("F005", "UserName or Password not correct"),
+    USERNAMEISEXIST("F006", "UserName is exist");
 
     static Map<String, String> mapCodeMsg;
 
