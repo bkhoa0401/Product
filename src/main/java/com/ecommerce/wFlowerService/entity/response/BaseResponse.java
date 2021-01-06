@@ -5,7 +5,7 @@ import com.ecommerce.wFlowerService.utils.ERRORCODE;
 public class BaseResponse <T> {
 
     private String errorCode = ERRORCODE.SUCCESS.getErrorCode();
-    private String errorMessage;
+    private String errorMessage = ERRORCODE.SUCCESS.getMessage();
     private T mainResult;
 
     public BaseResponse() {
@@ -45,5 +45,14 @@ public class BaseResponse <T> {
 
     public void setMainResult(T mainResult) {
         this.mainResult = mainResult;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseResponse{" +
+                "errorCode='" + errorCode + '\'' +
+                ", errorMessage='" + errorMessage + '\'' +
+                ", mainResult=" + mainResult +
+                '}';
     }
 }

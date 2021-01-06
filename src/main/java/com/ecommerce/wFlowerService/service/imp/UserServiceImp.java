@@ -43,7 +43,7 @@ public class UserServiceImp implements IUserService, UserDetailsService {
 
         User userIsExist = userRepository.findUserByUsername(user.getUsername());
         if (userIsExist != null) {
-            return new BaseRespone(ERRORCODE.USERNAMEISEXIST);
+            return new BaseResponse(ERRORCODE.USERNAMEISEXIST);
         }
 
         user.setPassword(passwordEncoder().encode("12wqasxz"));

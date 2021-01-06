@@ -1,5 +1,6 @@
 package com.ecommerce.wFlowerService.entity.request;
 
+import com.sun.org.apache.xml.internal.security.utils.Base64;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,4 +9,11 @@ import lombok.Setter;
 public class LoginRequest {
     private String loginID;
     private String password;
+
+    @Override
+    public String toString() {
+        return "LoginRequest{" +
+                "loginID='" + loginID + '\''+
+                '}';
+    }
 }

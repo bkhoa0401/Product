@@ -54,5 +54,16 @@ public class User implements Serializable {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role roleID;
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", name='" + name + '\'' +
+                ", phone='" + phone + '\'' +
+                ", address='" + address + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
 

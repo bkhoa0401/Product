@@ -7,4 +7,11 @@ import lombok.Setter;
 @Setter
 public class ResetPasswordRequest {
     private String username;
+
+    @Override
+    public String toString() {
+        return "ResetPasswordRequest{" +
+                "username='" + username + '\'' +
+                '}';
+    }
 }

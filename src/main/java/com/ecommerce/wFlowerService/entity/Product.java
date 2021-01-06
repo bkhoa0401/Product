@@ -39,5 +39,16 @@ public class Product implements Serializable {
     @Column(name = "CREATIONTIME", columnDefinition = "datetime")
     private Date creationTime;
 
+    @Override
+    public String toString() {
+        return "Product{" +
+                "name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", linkDetail='" + linkDetail + '\'' +
+                ", oldPrice='" + oldPrice + '\'' +
+                ", newPrice='" + newPrice + '\'' +
+                ", imagesDetail='" + imagesDetail + '\'' +
+                '}';
+    }
 }
 
