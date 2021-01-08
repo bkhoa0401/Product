@@ -11,7 +11,9 @@ public enum ERRORCODE {
     USERNOTFOUND("F003","User not found"),
     PASSWORDNOTMATHCED("F004","Password not matched"),
     USERNAMEORPASSWORDNOTCORRECT("F005", "UserName or Password not correct"),
-    USERNAMEISEXIST("F006", "UserName is exist");
+    USERNAMEISEXIST("F006", "UserName is exist"),
+    ACCOUNTISLOCKED("F007", "Account is locked"),
+    BADREQUEST("F008", "Param request not valid");
 
     static Map<String, String> mapCodeMsg;
 

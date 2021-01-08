@@ -16,7 +16,7 @@ public class Role {
     @Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-   // @JsonIgnore
+    @JsonIgnore
     private long id;
 
     @Column(name = "NAME", columnDefinition = "NVARCHAR(20)")

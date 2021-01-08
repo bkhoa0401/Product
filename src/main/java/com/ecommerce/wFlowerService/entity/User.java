@@ -51,6 +51,9 @@ public class User implements Serializable {
     @Column(name = "ENABLE" , columnDefinition = "VARCHAR(1) default 'F'")
     private String enable;
 
+    @Column(name = "FAILLOGINCOUNT", columnDefinition = "int default 0")
+    private int failLoginCount;
+
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role roleID;

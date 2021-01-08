@@ -14,9 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -33,13 +34,7 @@ public class UserController {
     @Autowired
     IUserService iUserService;
 
-    @PostMapping("/register")
-    private ResponseEntity<BaseResponse> createUser(@RequestBody User user) {
-        if (user != null) {
-            return new ResponseEntity(iUserService.createUser(user), HttpStatus.OK);
-        }
-        return new ResponseEntity(new BaseResponse(ERRORCODE.FAIL), HttpStatus.BAD_REQUEST);
-    }
+    // authen
 
     @PostMapping("/login")
     private ResponseEntity<BaseResponse> login(@RequestBody LoginRequest login) {
@@ -49,10 +44,16 @@ public class UserController {
                     (new UsernamePasswordAuthenticationToken(login.getLoginID(), login.getPassword()));
             String token = jwtTokenProvider.generateToken((CustomUserDetails) authentication.getPrincipal());
 
-            LoginResponse loginResponse = new LoginResponse(((CustomUserDetails) authentication.getPrincipal()).getUser());
+            User userResult = ((CustomUserDetails) authentication.getPrincipal()).getUser();
+
+            LoginResponse loginResponse = new LoginResponse(userResult);
             loginResponse.setToken(token);
             return new ResponseEntity(loginResponse, HttpStatus.OK);
-        } catch (Exception ex) {
+
+        } catch (DisabledException ex) {
+            return new ResponseEntity(new BaseResponse(ERRORCODE.ACCOUNTISLOCKED), HttpStatus.OK);
+        } catch (BadCredentialsException ex) {
+            iUserService.increaseFailLoginCount(login.getLoginID());
             return new ResponseEntity(new BaseResponse(ERRORCODE.USERNAMEORPASSWORDNOTCORRECT), HttpStatus.UNAUTHORIZED);
         }
     }
@@ -62,16 +63,30 @@ public class UserController {
         String token = request.getHeader("Authorization");
         boolean isExpire = iUserService.checkAuth(token);
 
-        return new ResponseEntity(new BaseResponse(isExpire),HttpStatus.OK);
+        return new ResponseEntity(new BaseResponse(isExpire), HttpStatus.OK);
     }
 
     @PutMapping("/changepass")
-    private ResponseEntity<BaseResponse> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest){
+    private ResponseEntity<BaseResponse> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
         return new ResponseEntity<>(iUserService.changePassword(changePasswordRequest), HttpStatus.OK);
     }
 
     @PutMapping("/resetpass")
-    private ResponseEntity<BaseResponse> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest){
+    private ResponseEntity<BaseResponse> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
         return new ResponseEntity<>(iUserService.resetPassword(resetPasswordRequest), HttpStatus.OK);
+    }
+
+    @PostMapping("/register")
+    private ResponseEntity<BaseResponse> createUser(@RequestBody User user) {
+        if (user != null) {
+            return new ResponseEntity(iUserService.createUser(user), HttpStatus.OK);
+        }
+        return new ResponseEntity(new BaseResponse(ERRORCODE.FAIL), HttpStatus.BAD_REQUEST);
+    }
+
+    // manage user
+    @GetMapping("/api/users")
+    private ResponseEntity<BaseResponse> getUsers() {
+        return new ResponseEntity(new BaseResponse(iUserService.getUsers()), HttpStatus.OK);
     }
 }

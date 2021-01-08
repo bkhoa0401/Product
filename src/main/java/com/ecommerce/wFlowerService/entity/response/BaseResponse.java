@@ -2,16 +2,22 @@ package com.ecommerce.wFlowerService.entity.response;
 
 import com.ecommerce.wFlowerService.utils.ERRORCODE;
 
+import java.util.List;
+
 public class BaseResponse <T> {
 
     private String errorCode = ERRORCODE.SUCCESS.getErrorCode();
     private String errorMessage = ERRORCODE.SUCCESS.getMessage();
+    private int totalCount = 0;
     private T mainResult;
 
     public BaseResponse() {
     }
 
     public BaseResponse(T mainResult) {
+        if (mainResult instanceof List) {
+            setTotalCount(((List<?>) mainResult).size());
+        }
         this.mainResult = mainResult;
     }
 
@@ -44,6 +50,9 @@ public class BaseResponse <T> {
     }
 
     public void setMainResult(T mainResult) {
+        if (mainResult instanceof List) {
+            setTotalCount(((List<?>) mainResult).size());
+        }
         this.mainResult = mainResult;
     }
 
@@ -54,5 +63,13 @@ public class BaseResponse <T> {
                 ", errorMessage='" + errorMessage + '\'' +
                 ", mainResult=" + mainResult +
                 '}';
+    }
+
+    public int getTotalCount() {
+        return totalCount;
+    }
+
+    public void setTotalCount(int totalCount) {
+        this.totalCount = totalCount;
     }
 }

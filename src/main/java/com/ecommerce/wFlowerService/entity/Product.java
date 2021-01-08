@@ -39,6 +39,13 @@ public class Product implements Serializable {
     @Column(name = "CREATIONTIME", columnDefinition = "datetime")
     private Date creationTime;
 
+    @Column(name = "ENABLE" , columnDefinition = "VARCHAR(1) default 'T'")
+    private String enable = "T";
+
+    @ManyToOne
+    @JoinColumn(name = "branch_id")
+    private Branch branchID;
+
     @Override
     public String toString() {
         return "Product{" +

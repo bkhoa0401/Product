@@ -17,7 +17,12 @@ public class ProductServiceImp implements IProductService {
 
     @Override
     public List<Product> getProducts() {
-        return iProductRepository.findAll();
+        return iProductRepository.findProducts();
+    }
+
+    @Override
+    public List<Product> getProductsByBranch(long id) {
+        return iProductRepository.findProductsByBranchID(id);
     }
 
     @Override
@@ -32,5 +37,33 @@ public class ProductServiceImp implements IProductService {
     @Override
     public void addNewProduct(Product product) {
         iProductRepository.save(product);
+    }
+
+    @Override
+    public void updateProduct(Product product) {
+        Product productIsExist = iProductRepository.getOne(product.getId());
+
+        if (productIsExist != null) {
+            if (product.getImagesDetail() != null && !"".equals(product.getImagesDetail())) {
+                productIsExist.setImagesDetail(product.getImagesDetail());
+            }
+            if (product.getImage() != null && !"".equals(product.getImage())) {
+                productIsExist.setImage(product.getImage());
+            }
+            if (product.getEnable() != null && !"".equals(product.getEnable())) {
+                productIsExist.setEnable(product.getEnable());
+            }
+            if (product.getName() != null && !"".equals(product.getName())) {
+                productIsExist.setName(product.getName());
+            }
+            if (product.getNewPrice() != null && !"".equals(product.getNewPrice())) {
+                productIsExist.setNewPrice(product.getNewPrice());
+            }
+            if (product.getOldPrice() != null && !"".equals(product.getOldPrice())) {
+                productIsExist.setOldPrice(product.getOldPrice());
+            }
+
+            iProductRepository.save(productIsExist);
+        }
     }
 }
