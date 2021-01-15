@@ -2,6 +2,7 @@ package com.ecommerce.wFlowerService.security;
 
 import com.ecommerce.wFlowerService.service.imp.UserServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -24,14 +25,18 @@ public class JwtAuthenticateRequest extends OncePerRequestFilter {
     @Autowired
     UserServiceImp userServiceImp;
 
+    @Value("${isDebug}")
+    private boolean isDebug;
+
+
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain)
             throws ServletException, IOException {
 
         String token = httpServletRequest.getHeader("Authorization");
         if (token != null && tokenProvider.validateToken(token)) {
-            String username = tokenProvider.getUserNameByToken(token);
-            UserDetails user = userServiceImp.loadUserByUsername(username);
+            String usernameFromToken = tokenProvider.getUserNameByToken(token);
+            UserDetails user = userServiceImp.loadUserByUsername(usernameFromToken);
 
             Authentication authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
             if (user != null) {
@@ -40,4 +45,5 @@ public class JwtAuthenticateRequest extends OncePerRequestFilter {
         }
         filterChain.doFilter(httpServletRequest, httpServletResponse);
     }
+
 }

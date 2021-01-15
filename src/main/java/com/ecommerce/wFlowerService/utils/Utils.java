@@ -1,5 +1,6 @@
 package com.ecommerce.wFlowerService.utils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Random;
 
 public class Utils {
@@ -16,5 +17,12 @@ public class Utils {
             sb.append(alphabet.charAt(r.nextInt(n)));
 
         return sb.toString();
+    }
+
+    public static boolean checkUserNameFTokenAndUserNameFromBIsMatched(HttpServletRequest request, String username) {
+        if (request.getHeader("Authorization").equals(username)) {
+            return true;
+        }
+        return false;
     }
 }

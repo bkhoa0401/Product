@@ -1,16 +1,19 @@
 package com.ecommerce.wFlowerService.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCT")
 @Getter
 @Setter
+@NoArgsConstructor
 public class Product implements Serializable {
 
     @Id
@@ -45,6 +48,13 @@ public class Product implements Serializable {
     @ManyToOne
     @JoinColumn(name = "branch_id")
     private Branch branchID;
+
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    private Set<OrderDetails> orderDetails;
+
+    public Product(String name) {
+        this.name = name;
+    }
 
     @Override
     public String toString() {

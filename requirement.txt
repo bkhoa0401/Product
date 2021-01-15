@@ -8,12 +8,12 @@
 - Quản lý nhóm sản phẩm
 - Quản lý sản phẩm 
 - Sản phẩm ( tên, loại sản phẩm,mô tả sản phẩm,hình ảnh, giá, số lượng ( có thể cung cấp))
+- Giỏ hàng ( có thể thanh toán được các loại khác nhau như thanh toán online momo, zalopay,.. hoặc offline sau khi giao hàng) ( basic order is done )
 - Quản lý nhóm khách hàng ( phân khúc khách hàng ví dụ cấp bậc vàng, bac, đồng..)
 - Quản lý điểm ( sau khi mua hàng được cộng điểm -> bao nhiêu điểm được hạng vàng , được hạng vàng sẽ được giá giảm theo phần trăm)
 - Quản lý sale ( cho tạo 1 chương trình sale áp dụng cho loại sản phẩm nào và được giảm bn % giá)
 - Bảng giá ( giảm giá theo nhóm khách hàng)
 - Gợi ý mua hàng ( đặt lại đơn cũ, các món hàng đã tìm kiếm, món hàng đang được mua nhiều nhất)
 - Hiển thị danh sách các sản phẩm
-- Giỏ hàng ( có thể thanh toán được các loại khác nhau như thanh toán online momo, zalopay,.. hoặc offline sau khi giao hàng)
 - Thông báo sau khi đưa hàng cho bên giao hàng ( gửi sms hoặc email)
 - Chat với khách hàng

@@ -10,6 +10,7 @@ import com.ecommerce.wFlowerService.security.JwtTokenProvider;
 import com.ecommerce.wFlowerService.security.bean.CustomUserDetails;
 import com.ecommerce.wFlowerService.service.IUserService;
 import com.ecommerce.wFlowerService.utils.ERRORCODE;
+import com.ecommerce.wFlowerService.utils.Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -67,13 +68,21 @@ public class UserController {
     }
 
     @PutMapping("/changepass")
-    private ResponseEntity<BaseResponse> changePassword(@RequestBody ChangePasswordRequest changePasswordRequest) {
-        return new ResponseEntity<>(iUserService.changePassword(changePasswordRequest), HttpStatus.OK);
+    private ResponseEntity<BaseResponse> changePassword(HttpServletRequest request,
+                                                        @RequestBody ChangePasswordRequest changePasswordRequest) {
+        if (Utils.checkUserNameFTokenAndUserNameFromBIsMatched(request, changePasswordRequest.getUsername())) {
+            return new ResponseEntity<>(iUserService.changePassword(changePasswordRequest), HttpStatus.OK);
+        }
+        return new ResponseEntity(new BaseResponse(ERRORCODE.TOKENNOTVALID), HttpStatus.UNAUTHORIZED);
     }
 
     @PutMapping("/resetpass")
-    private ResponseEntity<BaseResponse> resetPassword(@RequestBody ResetPasswordRequest resetPasswordRequest) {
-        return new ResponseEntity<>(iUserService.resetPassword(resetPasswordRequest), HttpStatus.OK);
+    private ResponseEntity<BaseResponse> resetPassword(HttpServletRequest request,
+                                                       @RequestBody ResetPasswordRequest resetPasswordRequest) {
+        if (Utils.checkUserNameFTokenAndUserNameFromBIsMatched(request, resetPasswordRequest.getUsername())) {
+            return new ResponseEntity<>(iUserService.resetPassword(resetPasswordRequest), HttpStatus.OK);
+        }
+        return new ResponseEntity(new BaseResponse(ERRORCODE.TOKENNOTVALID), HttpStatus.UNAUTHORIZED);
     }
 
     @PostMapping("/register")
@@ -87,6 +96,6 @@ public class UserController {
     // manage user
     @GetMapping("/api/users")
     private ResponseEntity<BaseResponse> getUsers() {
-        return new ResponseEntity(new BaseResponse(iUserService.getUsers()), HttpStatus.OK);
+       return new ResponseEntity(new BaseResponse(iUserService.getUsers()), HttpStatus.OK);
     }
 }

@@ -3,11 +3,11 @@ package com.ecommerce.wFlowerService.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.Set;
 
 @Entity
 @Table(name = "User")
@@ -57,6 +57,10 @@ public class User implements Serializable {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role roleID;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user")
+    private Set<Orders> orders;
 
     @Override
     public String toString() {

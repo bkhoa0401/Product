@@ -13,7 +13,8 @@ public enum ERRORCODE {
     USERNAMEORPASSWORDNOTCORRECT("F005", "UserName or Password not correct"),
     USERNAMEISEXIST("F006", "UserName is exist"),
     ACCOUNTISLOCKED("F007", "Account is locked"),
-    BADREQUEST("F008", "Param request not valid");
+    BADREQUEST("F008", "Param request not valid"),
+    TOKENNOTVALID("F009", "Token not valid");
 
     static Map<String, String> mapCodeMsg;
 
