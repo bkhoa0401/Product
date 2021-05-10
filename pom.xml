@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ecommerce</groupId>
-	<artifactId>wFlowerService</artifactId>
+	<artifactId>wProductService</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>wFlowerService</name>
+	<name>wProductService</name>
 	<description>Web Ecommerce Project</description>
 	<packaging>jar</packaging>
 
