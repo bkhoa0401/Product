@@ -15,11 +15,16 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 public class Product implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
 
     @Id
     @Column(name = "ID" , nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+    
+    @Column(name="CODEPRODUCT", columnDefinition = "VARCHAR(50)")
+    private String codeProduct;
 
     @Column(name = "NAME", columnDefinition = "NVARCHAR(500)")
     private String name;
@@ -38,6 +43,9 @@ public class Product implements Serializable {
 
     @Column(name = "IMAGESDETAIL", columnDefinition = "VARCHAR(3000)")
     private String imagesDetail;
+    
+    @Column(name = "SIZE", columnDefinition = "NVARCHAR(200)")
+    private String size;
 
     @Column(name = "CREATIONTIME", columnDefinition = "datetime")
     private Date creationTime;

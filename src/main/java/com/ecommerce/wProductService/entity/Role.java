@@ -5,15 +5,19 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name="ROLE")
 @Setter
 @Getter
-public class Role {
+public class Role implements Serializable {
 
-    @Id
+	private static final long serialVersionUID = 5L;
+
+	@Id
     @Column(name = "ID", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore

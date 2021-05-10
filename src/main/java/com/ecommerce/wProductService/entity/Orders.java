@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -12,9 +14,11 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Orders {
+public class Orders implements Serializable{
+	
+	private static final long serialVersionUID = 4L;
 
-    @Id
+	@Id
     @Column(name = "orderID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderID;
