@@ -54,8 +54,8 @@ public class Product implements Serializable {
     private String enable = "T";
 
     @ManyToOne
-    @JoinColumn(name = "branch_id")
-    private Branch branchID;
+    @JoinColumn(name = "producttypedetail_id")
+    private ProductTypeDetail productTypeDetailID;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private Set<OrderDetails> orderDetails;

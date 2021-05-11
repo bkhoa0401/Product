@@ -10,10 +10,10 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "BRANCH")
+@Table(name = "PRODUCTTYPEDETAIL")
 @Getter
 @Setter
-public class Branch implements Serializable {
+public class ProductTypeDetail implements Serializable {
 
     /**
 	 * 
