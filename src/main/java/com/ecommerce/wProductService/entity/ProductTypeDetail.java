@@ -1,18 +1,14 @@
 package com.ecommerce.wProductService.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "PRODUCTTYPEDETAIL")
-@Getter
-@Setter
 public class ProductTypeDetail implements Serializable {
 
     /**
@@ -28,18 +24,63 @@ public class ProductTypeDetail implements Serializable {
     @Column(name = "NAME", columnDefinition = "VARCHAR(50)")
     private String name;
 
-    @OneToMany(mappedBy = "branchID")
+    @OneToMany(mappedBy = "productTypeDetailID", fetch = FetchType.LAZY)
     @JsonIgnore
-    private List<Product> products;
+    private Set<Product> products;
+    
+    @ManyToOne
+    @JoinColumn(name = "producttype_id")
+    private ProductType productType;
 
     @Column(name = "ENABLE" , columnDefinition = "VARCHAR(1) default 'T'")
     private String enable = "T";
+    
+    public String getName() {
+		return name;
+	}
 
-    @Override
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Set<Product> getProducts() {
+		return products;
+	}
+
+	public void setProducts(Set<Product> products) {
+		this.products = products;
+	}
+
+	@Override
     public String toString() {
         return "Branch{" +
                 "name='" + name + '\'' +
                 ", enable='" + enable + '\'' +
                 '}';
     }
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public ProductType getProductType() {
+		return productType;
+	}
+
+	public void setProductType(ProductType productType) {
+		this.productType = productType;
+	}
+
+	public String getEnable() {
+		return enable;
+	}
+
+	public void setEnable(String enable) {
+		this.enable = enable;
+	}
+	
 }

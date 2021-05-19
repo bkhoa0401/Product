@@ -1,8 +1,6 @@
 package com.ecommerce.wProductService.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,8 +9,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "User")
-@Getter
-@Setter
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -74,5 +70,109 @@ public class User implements Serializable {
                 ", email='" + email + '\'' +
                 '}';
     }
+
+	public long getUserID() {
+		return userID;
+	}
+
+	public void setUserID(long userID) {
+		this.userID = userID;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public Timestamp getCreationTime() {
+		return creationTime;
+	}
+
+	public void setCreationTime(Timestamp creationTime) {
+		this.creationTime = creationTime;
+	}
+
+	public Timestamp getActiveTime() {
+		return activeTime;
+	}
+
+	public void setActiveTime(Timestamp activeTime) {
+		this.activeTime = activeTime;
+	}
+
+	public String getEnable() {
+		return enable;
+	}
+
+	public void setEnable(String enable) {
+		this.enable = enable;
+	}
+
+	public int getFailLoginCount() {
+		return failLoginCount;
+	}
+
+	public void setFailLoginCount(int failLoginCount) {
+		this.failLoginCount = failLoginCount;
+	}
+
+	public Role getRoleID() {
+		return roleID;
+	}
+
+	public void setRoleID(Role roleID) {
+		this.roleID = roleID;
+	}
+
+	public Set<Orders> getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Set<Orders> orders) {
+		this.orders = orders;
+	}
 }
 

@@ -1,14 +1,15 @@
 package com.ecommerce.wProductService.log;
 
-import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 
 @Component
-@Slf4j
 public class LogService implements ILogService {
 
+	private static final Logger logger = LoggerFactory.getLogger(LogService.class);
     @Override
     public void logRequest(HttpServletRequest request, Object body) {
         StringBuilder sb = new StringBuilder();
@@ -20,7 +21,7 @@ public class LogService implements ILogService {
         if (body != null) {
             sb.append("body=[").append(body).append("]");
         }
-        log.info(sb.toString());
+        logger.info(sb.toString());
     }
 
     @Override
@@ -32,7 +33,7 @@ public class LogService implements ILogService {
         sb.append("path=[").append(request.getRequestURI()).append("]");
         sb.append("responseBody=[").append(body).append("]");
 
-        log.info(sb.toString());
+        logger.info(sb.toString());
     }
 
 }

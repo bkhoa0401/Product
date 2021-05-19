@@ -1,10 +1,5 @@
 package com.ecommerce.wProductService.entity.request;
 
-import lombok.Getter;
-import lombok.Setter;
-
-@Getter
-@Setter
 public class ProductRequest {
 
     private String productID;
@@ -17,4 +12,20 @@ public class ProductRequest {
                 ", number=" + number +
                 '}';
     }
+
+	public String getProductID() {
+		return productID;
+	}
+
+	public void setProductID(String productID) {
+		this.productID = productID;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
 }

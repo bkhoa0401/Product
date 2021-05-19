@@ -11,7 +11,11 @@ import java.util.Set;
 
 public class CustomUserDetails implements UserDetails {
 
-    private User user;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private User user;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

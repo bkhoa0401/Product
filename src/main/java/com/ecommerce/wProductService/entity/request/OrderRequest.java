@@ -1,18 +1,12 @@
 package com.ecommerce.wProductService.entity.request;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import java.util.List;
 
-@Getter
-@Setter
 public class OrderRequest {
 
     private String username;
     private String ordername;
     private List<ProductRequest> products;
-
 
     @Override
     public String toString() {
@@ -22,4 +16,35 @@ public class OrderRequest {
                 ", products=" + products +
                 '}';
     }
+
+
+	public String getUsername() {
+		return username;
+	}
+
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
+	public String getOrdername() {
+		return ordername;
+	}
+
+
+	public void setOrdername(String ordername) {
+		this.ordername = ordername;
+	}
+
+
+	public List<ProductRequest> getProducts() {
+		return products;
+	}
+
+
+	public void setProducts(List<ProductRequest> products) {
+		this.products = products;
+	}
+    
 }

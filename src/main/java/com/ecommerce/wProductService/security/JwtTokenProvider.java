@@ -2,7 +2,9 @@ package com.ecommerce.wProductService.security;
 
 
 import io.jsonwebtoken.*;
-import lombok.extern.slf4j.Slf4j;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -11,10 +13,11 @@ import com.ecommerce.wProductService.security.bean.CustomUserDetails;
 import java.util.Date;
 
 @Component
-@Slf4j
 public class JwtTokenProvider {
     @Value("${secret.key:default}")
     private String JWT_SECRET;
+    
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenProvider.class);
 
     //@Value("${time.expire:100000L)}")
     private long JWT_EXPIRATION = 2400000L;
@@ -43,13 +46,13 @@ public class JwtTokenProvider {
             Jwts.parser().setSigningKey(JWT_SECRET).parseClaimsJws(token);
             return true;
         } catch (MalformedJwtException ex) {
-            log.error("Invalid JWT Token");
+        	logger.error("Invalid JWT Token");
         } catch (ExpiredJwtException ex) {
-            log.error("Expired JWT token");
+        	logger.error("Expired JWT token");
         } catch (UnsupportedJwtException ex) {
-            log.error("Unsupported JWT token");
+        	logger.error("Unsupported JWT token");
         } catch (IllegalArgumentException ex) {
-            log.error("JWT claims string is empty.");
+        	logger.error("JWT claims string is empty.");
         }
         return false;
     }

@@ -1,8 +1,6 @@
 package com.ecommerce.wProductService.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Getter;
-import lombok.Setter;
 
 import javax.persistence.*;
 
@@ -11,8 +9,6 @@ import java.util.List;
 
 @Entity
 @Table(name="ROLE")
-@Setter
-@Getter
 public class Role implements Serializable {
 
 	private static final long serialVersionUID = 5L;
@@ -29,4 +25,21 @@ public class Role implements Serializable {
     @OneToMany(mappedBy = "roleID")
     @JsonIgnore
     private List<User> users;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public List<User> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<User> users) {
+		this.users = users;
+	}
+    
 }

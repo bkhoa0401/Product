@@ -1,18 +1,11 @@
 package com.ecommerce.wProductService.entity;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
 import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "ORDERDETAILS")
-@Getter
-@Setter
-@NoArgsConstructor
 public class OrderDetails implements Serializable{
 
 	private static final long serialVersionUID = 3L;
@@ -38,4 +31,30 @@ public class OrderDetails implements Serializable{
         this.orders = orders;
         this.product = product;
     }
+
+	public int getNumber() {
+		return number;
+	}
+
+	public void setNumber(int number) {
+		this.number = number;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Orders getOrders() {
+		return orders;
+	}
+
+	public void setOrders(Orders orders) {
+		this.orders = orders;
+	}
+    
+    
 }
