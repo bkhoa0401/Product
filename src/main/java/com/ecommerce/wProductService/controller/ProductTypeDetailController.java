@@ -1,10 +1,8 @@
 package com.ecommerce.wProductService.controller;
 
-import com.ecommerce.wProductService.entity.ProductType;
 import com.ecommerce.wProductService.entity.ProductTypeDetail;
 import com.ecommerce.wProductService.entity.response.BaseResponse;
 import com.ecommerce.wProductService.service.IProductTypeDetailService;
-import com.ecommerce.wProductService.service.IProductTypeService;
 import com.ecommerce.wProductService.utils.ERRORCODE;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +22,12 @@ public class ProductTypeDetailController {
     @GetMapping("/producttypedetail")
     private ResponseEntity<BaseResponse<List<ProductTypeDetail>>>  getProductTypeDetail() {
         return new ResponseEntity<>(new BaseResponse<>(iProductTypeServiceDetail.getProductTypeDetail()),HttpStatus.OK);
+    }
+    
+    @GetMapping("/producttypedetail/{id}")
+    private ResponseEntity<BaseResponse<List<ProductTypeDetail>>> getProductTypeDetailByProductTypeID(@PathVariable long id) {
+    	return new ResponseEntity<>(new BaseResponse<>(iProductTypeServiceDetail.getProductTypeDetailByProductTypeID(id))
+    			,HttpStatus.OK);
     }
 
     @PostMapping("/producttypedetail")

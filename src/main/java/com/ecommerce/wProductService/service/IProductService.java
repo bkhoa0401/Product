@@ -9,7 +9,7 @@ public interface IProductService {
 
      List<Product> getProducts();
 
-     List<Product> getProductsByBranch(long id);
+     List<Product> getProductsByProductTypeDetail(long id);
 
      Product getProductById(long id);
 

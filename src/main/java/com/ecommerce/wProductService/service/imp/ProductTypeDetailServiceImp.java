@@ -1,11 +1,8 @@
 package com.ecommerce.wProductService.service.imp;
 
-import com.ecommerce.wProductService.entity.ProductType;
 import com.ecommerce.wProductService.entity.ProductTypeDetail;
 import com.ecommerce.wProductService.repository.IProductTypeDetailRepository;
-import com.ecommerce.wProductService.repository.IProductTypeRepository;
 import com.ecommerce.wProductService.service.IProductTypeDetailService;
-import com.ecommerce.wProductService.service.IProductTypeService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -39,6 +36,11 @@ public class ProductTypeDetailServiceImp implements IProductTypeDetailService {
         	iProductTypeDetailRepository.save(findProductTypeDetailIsExist);
         }
 		
+	}
+
+	@Override
+	public List<ProductTypeDetail> getProductTypeDetailByProductTypeID(long id) {
+		return iProductTypeDetailRepository.findProductTypeDetailByProductTypeId(id);
 	}
 
 }

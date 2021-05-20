@@ -22,8 +22,8 @@ public class ProductServiceImp implements IProductService {
     }
 
     @Override
-    public List<Product> getProductsByBranch(long id) {
-        return iProductRepository.findProductsByBranchID(id);
+    public List<Product> getProductsByProductTypeDetail(long id) {
+        return iProductRepository.findProductsByProductTypeDetail(id);
     }
 
     @Override

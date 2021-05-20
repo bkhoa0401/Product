@@ -1,6 +1,9 @@
 package com.ecommerce.wProductService.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.Set;
@@ -11,7 +14,11 @@ public class Product implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
-    @Id
+    public Product() {
+		super();
+	}
+
+	@Id
     @Column(name = "ID" , nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -48,9 +55,11 @@ public class Product implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "producttypedetail_id")
+    @JsonIgnore
     private ProductTypeDetail productTypeDetailID;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
+    @JsonIgnore
     private Set<OrderDetails> orderDetails;
 
     public Product(String name) {

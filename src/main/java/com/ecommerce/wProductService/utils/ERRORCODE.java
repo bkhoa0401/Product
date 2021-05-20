@@ -5,16 +5,16 @@ import java.util.Map;
 
 public enum ERRORCODE {
 
-    SUCCESS("F000", "Success"),
-    FAIL("F001", "Fail"),
-    NORECORD("F002", "No record"),
-    USERNOTFOUND("F003","User not found"),
-    PASSWORDNOTMATHCED("F004","Password not matched"),
-    USERNAMEORPASSWORDNOTCORRECT("F005", "UserName or Password not correct"),
-    USERNAMEISEXIST("F006", "UserName is exist"),
-    ACCOUNTISLOCKED("F007", "Account is locked"),
-    BADREQUEST("F008", "Param request not valid"),
-    TOKENNOTVALID("F009", "Token not valid");
+    SUCCESS("P000", "Success"),
+    FAIL("P001", "Fail"),
+    NORECORD("P002", "No record"),
+    USERNOTFOUND("P003","User not found"),
+    PASSWORDNOTMATHCED("P004","Password not matched"),
+    USERNAMEORPASSWORDNOTCORRECT("P005", "UserName or Password not correct"),
+    USERNAMEISEXIST("P006", "UserName is exist"),
+    ACCOUNTISLOCKED("P007", "Account is locked"),
+    BADREQUEST("P008", "Param request not valid"),
+    TOKENNOTVALID("P009", "Token not valid");
 
     static Map<String, String> mapCodeMsg;
 

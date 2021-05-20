@@ -30,16 +30,16 @@ public class ProductController {
     }
 
     @GetMapping("/products/{id}")
-    private ResponseEntity<BaseResponse> getProductsByBranchId(@PathVariable(value = "id") long id) {
-        List<Product> rs = iProductService.getProductsByBranch(id);
+    private ResponseEntity<BaseResponse> getProductsByProductTypeDetailId(@PathVariable(value = "id") long id) {
+        List<Product> rs = iProductService.getProductsByProductTypeDetail(id);
         if (rs != null) {
             return new ResponseEntity<>(new ProductsResponse(rs), HttpStatus.OK);
         }
         return new ResponseEntity<>(new BaseResponse(ERRORCODE.NORECORD), HttpStatus.OK);
     }
 
-    @GetMapping("/product")
-    private ResponseEntity<BaseResponse> getProductById(@RequestParam(name = "id") long id) {
+    @GetMapping("/product/{id}")
+    private ResponseEntity<BaseResponse> getProductById(@PathVariable(value = "id") long id) {
         Product rs = iProductService.getProductById(id);
         if (rs != null) {
             return new ResponseEntity<>(new BaseResponse(rs), HttpStatus.OK);

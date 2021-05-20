@@ -11,12 +11,12 @@ import java.util.List;
 @Repository
 public interface IProductRepository extends JpaRepository<Product, Long> {
 
-    @Query(value = "select * from product p where p.enable = 'T' and p.branch_id in " +
-            " ( select id from branch where enable = 'T')", nativeQuery = true)
+    @Query(value = "select * from product p where p.enable = 'T' and p.producttypedetail_id in " +
+            " ( select id from producttypedetail where enable = 'T')", nativeQuery = true)
     List<Product> findProducts();
 
-    @Query(value = "select * from product p where p.enable = 'T' and p.branch_id = ?", nativeQuery = true)
-    List<Product> findProductsByBranchID(long id);
+    @Query(value = "select * from product p where p.enable = 'T' and p.producttypedetail_id = ?", nativeQuery = true)
+    List<Product> findProductsByProductTypeDetail(long id);
 
     @Query(value = "select * from product p where p.enable = 'T' and p.id = ?", nativeQuery = true)
     Product findProductsById(long id);

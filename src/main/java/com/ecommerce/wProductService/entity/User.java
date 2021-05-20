@@ -71,6 +71,10 @@ public class User implements Serializable {
                 '}';
     }
 
+	public User() {
+		super();
+	}
+
 	public long getUserID() {
 		return userID;
 	}

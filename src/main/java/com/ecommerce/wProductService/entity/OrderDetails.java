@@ -31,6 +31,11 @@ public class OrderDetails implements Serializable{
         this.orders = orders;
         this.product = product;
     }
+    
+
+	public OrderDetails() {
+		super();
+	}
 
 	public int getNumber() {
 		return number;

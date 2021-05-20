@@ -33,6 +33,7 @@ public class ProductTypeDetail implements Serializable {
     private ProductType productType;
 
     @Column(name = "ENABLE" , columnDefinition = "VARCHAR(1) default 'T'")
+    @JsonIgnore
     private String enable = "T";
     
     public String getName() {
@@ -53,7 +54,7 @@ public class ProductTypeDetail implements Serializable {
 
 	@Override
     public String toString() {
-        return "Branch{" +
+        return "ProductTypeDetail{" +
                 "name='" + name + '\'' +
                 ", enable='" + enable + '\'' +
                 '}';

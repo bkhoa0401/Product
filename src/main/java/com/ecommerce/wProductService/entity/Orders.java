@@ -31,6 +31,10 @@ public class Orders implements Serializable{
         this.user = user;
     }
 
+	public Orders() {
+		super();
+	}
+
 	public long getOrderID() {
 		return orderID;
 	}
