@@ -12,7 +12,7 @@ import java.util.List;
 public interface IProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "select * from product p where p.enable = 'T' and p.producttypedetail_id in " +
-            " ( select id from producttypedetail where enable = 'T')", nativeQuery = true)
+            " ( select id from producttypedetail where enable = 'T') limit 5", nativeQuery = true)
     List<Product> findProducts();
 
     @Query(value = "select * from product p where p.enable = 'T' and p.producttypedetail_id = ?", nativeQuery = true)
