@@ -67,4 +67,9 @@ public class ProductServiceImp implements IProductService {
             iProductRepository.save(productIsExist);
         }
     }
+
+	@Override
+	public List<Product> getProductsByProductType(long id) {
+		return iProductRepository.findProductsByProductTypeId(id);
+	}
 }

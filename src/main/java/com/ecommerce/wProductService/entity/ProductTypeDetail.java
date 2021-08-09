@@ -30,6 +30,7 @@ public class ProductTypeDetail implements Serializable {
     
     @ManyToOne
     @JoinColumn(name = "producttype_id")
+    @JsonIgnore
     private ProductType productType;
 
     @Column(name = "ENABLE" , columnDefinition = "VARCHAR(1) default 'T'")

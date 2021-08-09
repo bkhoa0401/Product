@@ -16,5 +16,7 @@ public interface IProductService {
      void addNewProduct(Product product);
 
      void updateProduct(Product product);
+     
+     List<Product> getProductsByProductType(long id);
 
 }

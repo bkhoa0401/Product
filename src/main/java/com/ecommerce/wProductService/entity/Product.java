@@ -2,6 +2,7 @@ package com.ecommerce.wProductService.entity;
 
 import javax.persistence.*;
 
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ import java.util.Set;
 public class Product implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-
+	
     public Product() {
 		super();
 	}

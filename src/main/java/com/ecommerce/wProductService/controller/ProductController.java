@@ -28,8 +28,17 @@ public class ProductController {
         }
         return new ResponseEntity<>(new BaseResponse(ERRORCODE.NORECORD), HttpStatus.OK);
     }
+    
+    @GetMapping("/products/type/{id}")
+    private ResponseEntity<BaseResponse> getProductByType(@PathVariable(value = "id") long id){
+    	List<Product> rs = iProductService.getProductsByProductType(id);
+    	if (rs != null) {
+    		return new ResponseEntity<>(new BaseResponse(rs), HttpStatus.OK);
+    	}
+    	return new ResponseEntity<>(new BaseResponse(ERRORCODE.NORECORD), HttpStatus.OK);
+    }
 
-    @GetMapping("/products/{id}")
+    @GetMapping("/products/detail/{id}")
     private ResponseEntity<BaseResponse> getProductsByProductTypeDetailId(@PathVariable(value = "id") long id) {
         List<Product> rs = iProductService.getProductsByProductTypeDetail(id);
         if (rs != null) {
@@ -58,5 +67,5 @@ public class ProductController {
         iProductService.updateProduct(product);
         return new ResponseEntity<>(new BaseResponse(ERRORCODE.SUCCESS), HttpStatus.OK);
     }
-
+    
 }

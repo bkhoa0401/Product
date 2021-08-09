@@ -12,7 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "PRODUCTTYPE")
@@ -32,7 +31,7 @@ public class ProductType implements Serializable {
     private String enable = "T";
 	
 	@OneToMany(mappedBy = "productType", fetch = FetchType.LAZY)
-	@JsonIgnore
+	//@JsonIgnore
 	private Set<ProductTypeDetail> productTypeDetails;
 
 	public ProductType() {
